@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .tetromino{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .pcs{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+        }
+        .pcs-1{
+            background-color: orange;
+            border: 1px solid orangered;
+        }
+    </style>
+</head>
+<body>
+    <div class="tetromino">
+        <div class="pcs pcs-1"></div>
+        <div class="pcs pcs-2"></div>
+        <div class="pcs pcs-3"></div>
+        <div class="pcs pcs-4"></div>
+    </div>
+</body>
+</html>
