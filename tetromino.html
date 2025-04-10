@@ -5,17 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        :root{
-            --board-w: 100px;
-            --board-h: 100px;
-            --board-border: 1px solid black;
-            --I-color: #f75a5a;
-            --O-color: #ffd63a;
-            --L-color: #ffa955;
-            --Z-color: #16c47f;
-            --T-color: #8f87f1;
-        }
-        *, *::before, *::after {
+          *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -23,79 +13,50 @@
         body{
             display: flex;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin-top: 25px;
             overflow: hidden;
+            flex-direction: column;
         }
         .pcs{
             position: absolute;
             width: 25px;
             height: 25px;
-            border-radius: 5px;
+            border-radius: 3px;
+            border: 1px solid silver;
         }
-        .I-tetromino{
+        .tetromino{
             position: relative;
-            width: var(--board-w);
-            height: var(--board-h);
-            border: var(--board-border);
-
-            .pcs-1{
-                border: 2px solid silver;
-                background-color: cyan;
-                top:25px;
-                left: 0;
-            }
-            .pcs-2{
-                border: 2px solid silver;
-                background-color: cyan;
-                top: 50px;
-                left: 0;
-            }
-            .pcs-3{
-                border: 2px solid silver;
-                background-color: cyan;
-                top: 75px;
-                left: 0;
-            }
-            .pcs-4{
-                border: 2px solid silver;
-                background-color: cyan;
-                top: 75px;
-                left: 25px;
-            }
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;;
         }
     </style>
 </head>
 <body>
-    <div class="O-tetromino">
-        <div id="pcs-1" class="pcs pcs-1"></div>
-        <div id="pcs-2" class="pcs pcs-2"></div>
-        <div id="pcs-3" class="pcs pcs-3"></div>
-        <div id="pcs-4" class="pcs pcs-4"></div>
-    </div>
-    <div class="I-tetromino">
-        <div id="pcs-1" class="pcs pcs-1"></div>
-        <div id="pcs-2" class="pcs pcs-2"></div>
-        <div id="pcs-3" class="pcs pcs-3"></div>
-        <div id="pcs-4" class="pcs pcs-4"></div>
-    </div>
-    <div class="S-tetromino">
-        <div id="pcs-1" class="pcs pcs-1"></div>
-        <div id="pcs-2" class="pcs pcs-2"></div>
-        <div id="pcs-3" class="pcs pcs-3"></div>
-        <div id="pcs-4" class="pcs pcs-4"></div>
-    </div>
-    <div class="T-tetromino">
-        <div id="pcs-1" class="pcs pcs-1"></div>
-        <div id="pcs-2" class="pcs pcs-2"></div>
-        <div id="pcs-3" class="pcs pcs-3"></div>
-        <div id="pcs-4" class="pcs pcs-4"></div>
-    </div>
-    <div class="L-tetromino">
-        <div id="pcs-1" class="pcs pcs-1"></div>
-        <div id="pcs-2" class="pcs pcs-2"></div>
-        <div id="pcs-3" class="pcs pcs-3"></div>
-        <div id="pcs-4" class="pcs pcs-4"></div>
-    </div>
+    <div class="tetromino"></div>
+    <button class="btn" style="margin-top: 25px; padding: 10px;">Chage tetromino</button>
+    <script src="./js/pcs.js"></script>
+    <script>
+        const btn = document.querySelector('.btn');
+        const tetromino = document.querySelector('.tetromino');
+        const boardPcs = [];
+
+        for (const pieceType in pcs[0]) {
+
+            if(pcs[0][pieceType].enabled){
+                for(let i = 1 ; i <= 4 ; i ++){
+                    const boxPcs = document.createElement('div');
+                    boxPcs.classList.add('pcs');
+                    boxPcs.style.backgroundColor = pcs[0][pieceType].color;
+                    boxPcs.style.inset = pcs[0][pieceType]['insetPcs' + i];
+                    boxPcs.id = pieceType + i;
+                    tetromino.appendChild(boxPcs);
+                }
+            }
+
+        }
+    </script>
 </body>
 </html>
