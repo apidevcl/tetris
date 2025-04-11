@@ -38,9 +38,9 @@
             border-top: none;
         }
         .current-pcs{
-            animation: movepcs 10s steps(15) forwards;
+            animation: move-pcs 10s steps(15) infinite;
         }
-        @keyframes movepcs{
+        @keyframes move-pcs{
             100%{
                 transform: translateY(500px);
             }
@@ -53,26 +53,29 @@
     </div>
     <script src="./js/pcs.js"></script>
     <script>
-        const btn = document.querySelector('.btn');
         const tetromino = document.querySelector('.tetromino');
 
-        for(const pieceType in pcs[0]){
-            if(pcs[0][pieceType].enabled){
-                console.log(pieceType);
-                for(let i = 1 ; i <= 4 ; i ++){
-                    const boxPcs = document.createElement('div');
-                    boxPcs.classList.add('pcs');
-                    boxPcs.style.backgroundColor = pcs[0][pieceType].color;
-                    boxPcs.style.inset = pcs[0][pieceType]['insetPcs' + i];
-                    boxPcs.id = `id${pieceType}${Math.floor(Math.random() * (1000 - 100 + 1)) + 100}`;
-                    tetromino.appendChild(boxPcs);
-                }
+        function createTetromino(currentPcs) {
+            for(let i = 1 ; i <= 4 ; i ++){
+                console.log(currentPcs, i)
+                const boxPcs = document.createElement('div');
+                boxPcs.classList.add('pcs');
+                boxPcs.style.backgroundColor = currentPcs.color;
+                boxPcs.style.inset = currentPcs['insetPcs' + i];
+                boxPcs.id = `id${currentPcs}${Math.floor(Math.random() * (1000 - 100 + 1)) + 100}`;
+                tetromino.appendChild(boxPcs);
                 const lastPcs = document.querySelector('.tetromino');
                 lastPcs.classList.add('current-pcs');
-                setTimeout(() => {
-                    lastPcs.classList.remove('current-pcs');
-                }, 10000);
             }
+        }
+        for(const pieceType in pcs[0]){
+            if(pcs[0][pieceType].enabled){
+                createTetromino(pcs[0][pieceType]);
+            }
+            const currentPcs = document.querySelector('.tetromino');
+            currentPcs.addEventListener('animationend', (e) => {
+                console.log(e.animationName);
+            });
         }
     </script>
 </body>
