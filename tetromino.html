@@ -37,6 +37,14 @@
             border: 5px solid blue;
             border-top: none;
         }
+        .current-pcs{
+            animation: movepcs 10s steps(15) forwards;
+        }
+        @keyframes movepcs{
+            100%{
+                transform: translateY(500px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -47,26 +55,24 @@
     <script>
         const btn = document.querySelector('.btn');
         const tetromino = document.querySelector('.tetromino');
-        const boardPcs = [];
-        let boxId = '';
-        for (const pieceType in pcs[0]) {
-            setTimeout(() => {
-                if(pcs[0][pieceType].enabled){
-                    for(let i = 1 ; i <= 4 ; i ++){
-                        const boxPcs = document.createElement('div');
-                        boxPcs.classList.add('pcs');
-                        boxPcs.style.backgroundColor = pcs[0][pieceType].color;
-                        boxPcs.style.inset = pcs[0][pieceType]['insetPcs' + i];
-                        boxPcs.id = `${pieceType}${Math.random(100, 1000) * 100}`;
-                        boxId = boxPcs.id;
-                        tetromino.appendChild(boxPcs);
-                    }
+
+        for(const pieceType in pcs[0]){
+            if(pcs[0][pieceType].enabled){
+                console.log(pieceType);
+                for(let i = 1 ; i <= 4 ; i ++){
+                    const boxPcs = document.createElement('div');
+                    boxPcs.classList.add('pcs');
+                    boxPcs.style.backgroundColor = pcs[0][pieceType].color;
+                    boxPcs.style.inset = pcs[0][pieceType]['insetPcs' + i];
+                    boxPcs.id = `id${pieceType}${Math.floor(Math.random() * (1000 - 100 + 1)) + 100}`;
+                    tetromino.appendChild(boxPcs);
                 }
-            }, 5000);
-            console.log(boxId)
-            const CurrentPcs = document.getElementById(boxId);
-            CurrentPcs.style.transform = 'translateY(600px)';
-            CurrentPcs.style.transition = 'transform 5s ease-in-out';
+                const lastPcs = document.querySelector('.tetromino');
+                lastPcs.classList.add('current-pcs');
+                setTimeout(() => {
+                    lastPcs.classList.remove('current-pcs');
+                }, 10000);
+            }
         }
     </script>
 </body>

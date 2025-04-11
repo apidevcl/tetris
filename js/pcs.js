@@ -1,7 +1,7 @@
 const pcs = [
     {
         I: {
-            enabled: 1,
+            enabled: 0,
             color: '#f75a5a',
             insetPcs1: '0px auto auto 0px',
             insetPcs2: '0px auto auto 25px',
@@ -9,7 +9,7 @@ const pcs = [
             insetPcs4: '0px auto auto 75px'            
         },
         O: {
-            enabled: 1,
+            enabled: 0,
             color: '#ffd63a',
             insetPcs1: '0px auto auto 0px',
             insetPcs2: '0px auto auto 25px',
@@ -17,7 +17,7 @@ const pcs = [
             insetPcs4: '25px auto auto 25px'
         },
         L: {
-            enabled: 1,
+            enabled: 0,
             color: '#ffa955',
             insetPcs1: '25px auto auto 0px',
             insetPcs2: '50px auto auto 0px',
