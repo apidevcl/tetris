@@ -54,7 +54,7 @@
     <script src="./js/pcs.js"></script>
     <script>
         const tetromino = document.querySelector('.tetromino');
-
+        let inGame = true;
         function createTetromino(currentPcs) {
             for(let i = 1 ; i <= 4 ; i ++){
                 console.log(currentPcs, i)
@@ -64,18 +64,19 @@
                 boxPcs.style.inset = currentPcs['insetPcs' + i];
                 boxPcs.id = `id${currentPcs}${Math.floor(Math.random() * (1000 - 100 + 1)) + 100}`;
                 tetromino.appendChild(boxPcs);
-                const lastPcs = document.querySelector('.tetromino');
-                lastPcs.classList.add('current-pcs');
             }
+            document.querySelector('.tetromino').classList.add('current-pcs');
+            tetromino.addEventListener('animationend', (e) => {
+                console.log('aqui')
+                document.querySelector('.tetromino') .classList.remove('current-pcs');
+            });
+            inGame = false;
         }
         for(const pieceType in pcs[0]){
-            if(pcs[0][pieceType].enabled){
+            console.log(inGame)
+            if(pcs[0][pieceType].enabled && inGame){
                 createTetromino(pcs[0][pieceType]);
             }
-            const currentPcs = document.querySelector('.tetromino');
-            currentPcs.addEventListener('animationend', (e) => {
-                console.log(e.animationName);
-            });
         }
     </script>
 </body>
